@@ -1,0 +1,34 @@
+# Gitleaks configuration
+# https://github.com/gitleaks/gitleaks
+
+title = "Gitleaks Configuration"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "generic-secret-assignment"
+description = "Generic secret assignment"
+regex = '''(?i)(password|secret|token|api_key|apikey)\s*[=:]\s*['"]([^'"]{8,})['"]'''
+keywords = ["password", "secret", "token", "api_key", "apikey"]
+
+[allowlist]
+description = "Global allowlist"
+
+paths = [
+    '''.*test.*''',
+    '''.*_test\.py''',
+    '''.*\.md''',
+]
+
+regexes = [
+    '''example[_-]?(api[_-]?)?key''',
+    '''fake[_-]?(api[_-]?)?key''',
+    '''test[_-]?(api[_-]?)?key''',
+    '''your[_-]?api[_-]?key''',
+    '''xxx+''',
+    '''placeholder''',
+    '''CHANGE_ME''',
+    '''<[^>]+>''',
+    '''\$\{[^}]+\}''',
+]
