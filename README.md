@@ -45,6 +45,7 @@ You can trigger the workflows manually using slash commands:
 |---------|--------------|
 | `/coder [task]` | Build a feature following coding standards |
 | `/reviewer` | Review the current code for issues |
+| `/commit` | Create a semantic commit with smart staging rules |
 
 Example: `/coder add a login page with email and password`
 
@@ -64,8 +65,10 @@ Example: `/coder add a login page with email and password`
 | `.claude/agents/CODER.md` | How to implement features properly |
 | `.claude/agents/REVIEWER.md` | Checklist for reviewing code quality |
 | `.claude/agents/WORKFLOW.md` | The build → review → fix loop |
+| `.claude/agents/git-workflow.md` | Git staging rules and secret detection |
 | `.claude/skills/coder/` | Slash command for coding |
 | `.claude/skills/reviewer/` | Slash command for reviewing |
+| `.claude/skills/commit/` | Slash command for commits |
 
 These files guide Claude to write better code. You can edit them to change how Claude works.
 
@@ -76,7 +79,7 @@ These run automatically to catch problems:
 | Tool | What It Does |
 |------|--------------|
 | **Ruff** | Finds common mistakes and style issues |
-| **mypy** | Checks that data types are used correctly |
+| **Pyright** | Checks that data types are used correctly |
 | **pytest** | Runs tests to verify the code works |
 | **gitleaks** | Prevents accidentally saving passwords or API keys |
 | **pre-commit** | Runs all checks automatically on each commit |
