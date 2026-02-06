@@ -1,7 +1,7 @@
 repos:
   # General checks
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -30,13 +30,12 @@ repos:
         args: [--fix, --exit-non-zero-on-fix]
       - id: ruff-format
 
-  # Python: Type checking with mypy
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.8.0
+  # Python: Type checking with pyright
+  - repo: local
     hooks:
-      - id: mypy
-        additional_dependencies:
-          - types-requests
-        args: [--config-file=pyproject.toml]
+      - id: pyright
+        name: Pyright type checking
+        entry: pyright
+        language: system
+        types: [python]
         pass_filenames: false
-        entry: mypy src/

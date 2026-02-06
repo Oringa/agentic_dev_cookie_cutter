@@ -8,7 +8,7 @@
 
 1. **Follow `.claude/agents/CODER.md`** - Read and follow these instructions
 2. **Write tests** - Every feature needs tests in `tests/`
-3. **Run quality checks** - `ruff check . && ruff format . && mypy src/ && pytest`
+3. **Run quality checks** - `ruff check . && ruff format . && pyright src/ && pytest`
 4. **Self-review** - Follow `.claude/agents/REVIEWER.md` to review your own code
 5. **Fix issues** - If review finds problems, fix them and review again (max 3 cycles)
 
@@ -38,7 +38,7 @@ pre-commit install
 | Run linter | `ruff check .` |
 | Auto-fix lint issues | `ruff check . --fix` |
 | Run formatter | `ruff format .` |
-| Type check | `mypy src` |
+| Type check | `pyright src` |
 | Run tests | `pytest` |
 | Run all checks | `pre-commit run --all-files` |
 
@@ -50,10 +50,12 @@ myproject/
 │   ├── agents/           # Agent instructions
 │   │   ├── CODER.md      # Coding workflow
 │   │   ├── REVIEWER.md   # Review workflow
-│   │   └── WORKFLOW.md   # Full workflow loop
+│   │   ├── WORKFLOW.md   # Full workflow loop
+│   │   └── git-workflow.md # Git staging and secret detection
 │   └── skills/           # Slash commands
 │       ├── coder/        # /coder command
-│       └── reviewer/     # /reviewer command
+│       ├── reviewer/     # /reviewer command
+│       └── commit/       # /commit command
 ├── src/
 │   └── myproject/        # Source code (rename this)
 │       └── __init__.py
@@ -155,6 +157,7 @@ This project uses a CODER → REVIEWER workflow:
 |---------|--------------|
 | `/coder [task]` | Build a feature following coding standards |
 | `/reviewer` | Review the current code for issues |
+| `/commit` | Create a semantic commit with smart staging |
 
 ## Secrets and Configuration
 
